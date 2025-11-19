@@ -1,0 +1,75 @@
+✅ 1. Create Employee Table
+
+CREATE TABLE Employee (
+    Employee_ID INT,
+    Employee_Code VARCHAR(50),
+    Employee_Name VARCHAR(100)
+);
+
+
+---
+
+✅ 2. Insert Some Values Into Employee Table
+
+INSERT INTO Employee VALUES (1, 'E-101', 'Rahim');
+INSERT INTO Employee VALUES (2, 'E-102', 'Karim');
+INSERT INTO Employee VALUES (3, 'E-103', 'Ayesha');
+
+
+---
+
+✅ 3. Update Some Values in Employee Table
+
+Example updates:
+
+UPDATE Employee
+SET Employee_Name = 'Ayesha Akter'
+WHERE Employee_ID = 3;
+
+UPDATE Employee
+SET Employee_Code = 'E-111'
+WHERE Employee_ID = 2;
+
+
+---
+
+✅ 4. View Data in the Table
+
+SELECT * FROM Employee;
+
+
+---
+
+✅ 5. Drop the Employee Table
+
+DROP TABLE Employee;
+
+
+---
+
+✅ 6. Create Department Table
+
+CREATE TABLE Department (
+    Department_ID INT,
+    Department_Code VARCHAR(50),
+    Department_Name VARCHAR(100)
+);
+
+
+---
+
+✅ 7. Insert Values Into Department Table
+
+INSERT INTO Department VALUES (10, 'D-01', 'HR');
+INSERT INTO Department VALUES (20, 'D-02', 'Finance');
+INSERT INTO Department VALUES (30, 'D-03', 'Marketing');
+
+
+---
+
+✅ 8. Truncate the Department Table
+
+TRUNCATE TABLE Department;
+
+
+---
