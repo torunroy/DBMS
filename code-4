@@ -1,0 +1,155 @@
+✅ Assumption:
+
+Tables already exist:
+
+Student(Student_ID, …)
+
+Hall(Hall_ID, Hall_Name, other columns…)
+
+Course(Course_ID, Course_Name, other columns…)
+
+
+
+---
+
+✅ 1. Remove all columns from Hall except Hall_ID, Hall_Name
+
+You must drop unwanted columns one by one:
+
+ALTER TABLE Hall DROP COLUMN Column1;
+ALTER TABLE Hall DROP COLUMN Column2;
+ALTER TABLE Hall DROP COLUMN Column3;
+
+(Replace Column1, Column2, etc. with real column names.)
+
+
+---
+
+✅ 2. Remove all columns from Course except Course_ID, Course_Name
+
+ALTER TABLE Course DROP COLUMN Column1;
+ALTER TABLE Course DROP COLUMN Column2;
+
+(Replace with actual column names.)
+
+
+---
+
+✅ 3. Make Student_ID a Primary Key (if not already)
+
+ALTER TABLE Student
+ADD CONSTRAINT PK_Student PRIMARY KEY (Student_ID);
+
+
+---
+
+✅ 4. Make Course_ID a Primary Key (if not already)
+
+ALTER TABLE Course
+ADD CONSTRAINT PK_Course PRIMARY KEY (Course_ID);
+
+
+---
+
+✅ 5. Make Hall_ID a Primary Key (if not already)
+
+ALTER TABLE Hall
+ADD CONSTRAINT PK_Hall PRIMARY KEY (Hall_ID);
+
+
+---
+
+✅ 6. Add Course_ID and Hall_ID columns to Student table (as foreign keys)
+
+Add the columns:
+
+ALTER TABLE Student
+ADD Course_ID INT;
+
+ALTER TABLE Student
+ADD Hall_ID INT;
+
+Add foreign key constraints:
+
+ALTER TABLE Student
+ADD CONSTRAINT FK_Student_Course
+FOREIGN KEY (Course_ID) REFERENCES Course(Course_ID);
+
+ALTER TABLE Student
+ADD CONSTRAINT FK_Student_Hall
+FOREIGN KEY (Hall_ID) REFERENCES Hall(Hall_ID);
+
+
+---
+
+✅ 7. Add Hall_Clearance column in Hall Table
+
+ALTER TABLE Hall
+ADD Hall_Clearance INT;
+
+
+---
+
+✅ 8. Set default value of Hall_Clearance to 1
+
+ALTER TABLE Hall
+ALTER COLUMN Hall_Clearance SET DEFAULT 1;
+
+(MySQL alternative)
+
+ALTER TABLE Hall
+MODIFY Hall_Clearance INT DEFAULT 1;
+
+
+---
+
+✅ 9. Rename Student Table to Student_Info
+
+ALTER TABLE Student
+RENAME TO Student_Info;
+
+
+---
+
+✅ 10. Rename any column (Example: rename Course_Name → Course_Title)
+
+ALTER TABLE Course
+CHANGE COLUMN Course_Name Course_Title VARCHAR(100);
+
+
+---
+
+✅ 11. Make Composite Primary Keys
+
+Student_Info table (example: Student_ID + Course_ID)
+
+ALTER TABLE Student_Info
+ADD CONSTRAINT PK_StudentInfo PRIMARY KEY (Student_ID, Course_ID);
+
+Course table (example: Course_ID + Course_Name)
+
+ALTER TABLE Course
+ADD CONSTRAINT PK_Course_Composite PRIMARY KEY (Course_ID, Course_Title);
+
+Hall table (example: Hall_ID + Hall_Name)
+
+ALTER TABLE Hall
+ADD CONSTRAINT PK_Hall_Composite PRIMARY KEY (Hall_ID, Hall_Name);
+
+
+---
+
+✅ 12. Drop Primary Key constraints from all tables
+
+ALTER TABLE Student_Info DROP PRIMARY KEY;
+ALTER TABLE Course DROP PRIMARY KEY;
+ALTER TABLE Hall DROP PRIMARY KEY;
+
+
+---
+
+If you want, sweetheart ❤️, I can also:
+✨ Create sample initial tables
+✨ Fill them with dummy data
+✨ Draw ER diagram
+✨ Create a full practical SQL lab sheet
