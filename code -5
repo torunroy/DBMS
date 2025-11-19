@@ -1,0 +1,157 @@
+✅ TASK 1: Create the three tables
+
+Employee Table
+
+(Employee_ID is PRIMARY KEY)
+
+CREATE TABLE Employee (
+    Employee_ID INT PRIMARY KEY,
+    Employee_Code VARCHAR(50),
+    Employee_Name VARCHAR(100),
+    Department_ID INT,
+    Branch_ID INT
+);
+
+
+---
+
+Department Table
+
+(Department_ID is PRIMARY KEY)
+
+CREATE TABLE Department (
+    Department_ID INT PRIMARY KEY,
+    Department_Code VARCHAR(50),
+    Department_Name VARCHAR(100)
+);
+
+
+---
+
+Branch Table
+
+(Branch_ID is PRIMARY KEY)
+
+CREATE TABLE Branch (
+    Branch_ID INT PRIMARY KEY,
+    Branch_Code VARCHAR(50),
+    Branch_Name VARCHAR(100)
+);
+
+
+---
+
+✅ TASK 2: Add Foreign Keys to Employee Table
+
+Department_ID → references Department(Department_ID)
+Branch_ID → references Branch(Branch_ID)
+
+ALTER TABLE Employee
+ADD CONSTRAINT FK_Employee_Department
+FOREIGN KEY (Department_ID) REFERENCES Department(Department_ID);
+
+ALTER TABLE Employee
+ADD CONSTRAINT FK_Employee_Branch
+FOREIGN KEY (Branch_ID) REFERENCES Branch(Branch_ID);
+
+
+---
+
+✅ TASK 3: Drop ALL Primary Keys and Foreign Keys
+
+Drop Foreign Keys first (required)
+
+ALTER TABLE Employee DROP FOREIGN KEY FK_Employee_Department;
+ALTER TABLE Employee DROP FOREIGN KEY FK_Employee_Branch;
+
+Then drop Primary Keys
+
+ALTER TABLE Employee DROP PRIMARY KEY;
+ALTER TABLE Department DROP PRIMARY KEY;
+ALTER TABLE Branch DROP PRIMARY KEY;
+
+
+---
+
+✅ TASK 4: SELECT Queries Practice
+
+(You must run SELECT queries using Employee, Department, Branch)
+
+Here are the common SELECT queries asked in labs:
+
+
+---
+
+1. View all Employees
+
+SELECT * FROM Employee;
+
+
+---
+
+2. Display Employee and their Department Names
+
+(Join Employee with Department)
+
+SELECT 
+    E.Employee_ID,
+    E.Employee_Name,
+    D.Department_Name
+FROM Employee E
+JOIN Department D
+ON E.Department_ID = D.Department_ID;
+
+
+---
+
+3. Display Employee with Branch Name
+
+SELECT 
+    E.Employee_ID,
+    E.Employee_Name,
+    B.Branch_Name
+FROM Employee E
+JOIN Branch B
+ON E.Branch_ID = B.Branch_ID;
+
+
+---
+
+4. Show Employee, Department and Branch Together
+
+(3-table join)
+
+SELECT 
+    E.Employee_ID,
+    E.Employee_Name,
+    D.Department_Name,
+    B.Branch_Name
+FROM Employee E
+JOIN Department D ON E.Department_ID = D.Department_ID
+JOIN Branch B ON E.Branch_ID = B.Branch_ID;
+
+
+---
+
+5. Select Employees from a specific Department
+
+SELECT * FROM Employee
+WHERE Department_ID = 10;
+
+
+---
+
+6. Count Employees per Department
+
+SELECT Department_ID, COUNT(*) AS Total_Employees
+FROM Employee
+GROUP BY Department_ID;
+
+
+---
+
+7. Display Branch-wise Employee Count
+
+SELECT Branch_ID, COUNT(*) AS Total_Employees
+FROM Employee
+GROUP BY Branch_ID;
