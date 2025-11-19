@@ -1,0 +1,69 @@
+✅ 1. Create Employee Table
+
+Employee_ID has NOT NULL constraint
+
+CREATE TABLE Employee (
+    Employee_ID INT NOT NULL,
+    Employee_Code VARCHAR(50),
+    Employee_Name VARCHAR(100),
+    Department_ID INT,
+    Branch_ID INT
+);
+
+
+---
+
+✅ 2. Create Department Table
+
+Department_ID has UNIQUE Key constraint
+
+CREATE TABLE Department (
+    Department_ID INT UNIQUE,
+    Department_Code VARCHAR(50),
+    Department_Name VARCHAR(100)
+);
+
+
+---
+
+✅ 3. Create Branch Table
+
+Branch_ID has Primary Key constraint
+
+CREATE TABLE Branch (
+    Branch_ID INT PRIMARY KEY,
+    Branch_Code VARCHAR(50),
+    Branch_Name VARCHAR(100)
+);
+
+
+---
+
+✅ 4. Create Course Table
+
+Course_ID + Course_Code → Composite Primary Key
+
+CREATE TABLE Course (
+    Course_ID INT,
+    Course_Code VARCHAR(50),
+    Course_Name VARCHAR(100),
+    PRIMARY KEY (Course_ID, Course_Code)
+);
+
+
+---
+
+✅ 5. Create Customer Table
+
+Customer_ID → Primary Key
+
+Branch_ID → Foreign Key referencing Branch
+
+
+CREATE TABLE Customer (
+    Customer_ID INT PRIMARY KEY,
+    Customer_Code VARCHAR(50),
+    Customer_Name VARCHAR(100),
+    Branch_ID INT,
+    FOREIGN KEY (Branch_ID) REFERENCES Branch(Branch_ID)
+);
